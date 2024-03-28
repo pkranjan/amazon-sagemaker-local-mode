@@ -11,12 +11,15 @@
 #      in order to be able to pull the docker image from ECR.
 ########################################################################################################################
 
+import os
 from sagemaker.local import LocalSession
 from sagemaker.processing import ProcessingInput, ProcessingOutput
 from sagemaker.sklearn.processing import SKLearnProcessor
 
 sagemaker_session = LocalSession()
 sagemaker_session.config = {'local': {'local_code': True}}
+
+BASE_DIR = os.path.dirname(os.path.realpath(__file__))
 
 # For local training a dummy role will be sufficient
 role = 'arn:aws:iam::111111111111:role/service-role/AmazonSageMaker-ExecutionRole-20200101T000001'
